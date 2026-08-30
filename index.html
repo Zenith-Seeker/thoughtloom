@@ -4,148 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thought Loom Framework</title>
-    <!-- Tailwind CSS modern compilation engine -->
+    <!-- Tailwind CSS Engine -->
     <script src="https://tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        loomDark: '#1E1E24',
+                        loomBg: '#FFFDF6'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { 
-            background-color: #FFF9E6; 
-            font-family: system-ui, -apple-system, sans-serif; 
-        }
-        .premium-blur {
-            backdrop-filter: blur(8px);
-        }
-        /* Custom smooth expansion layout modifiers */
-        .animate-slide-up {
-            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        /* Clean transition for smooth mobile experience */
+        .dropdown-menu { display: none; }
+        .dropdown-menu.show { display: block; }
     </style>
 </head>
-<body class="flex flex-col items-center p-4 text-neutral-800 antialiased min-h-screen select-none">
+<body class="bg-[#FFFDF6] text-neutral-800 font-sans min-h-screen flex flex-col">
 
-    
-    <header class="w-full max-w-md text-center mt-4">
-        <h1 class="text-4xl font-black tracking-widest text-[#FF6F00] uppercase flex items-center justify-center relative drop-shadow-xs">
-            THOUGHT L<span class="inline-flex items-center relative mx-0.5 text-[#FF6F00]">O<span class="absolute text-xs top-[-4px] left-[4px]">👀</span></span>OM
-        </h1>
-        <p class="text-[10px] font-extrabold text-neutral-500 tracking-[0.25em] mt-3 uppercase">
-            Weaving Human Insight with Advanced Technology
-        </p>
-        <hr class="border-t-2 border-dashed border-[#FF6F00]/20 my-5">
-    </header>
-
-    <!-- 🌐 Main Infrastructure App Mount -->
-    <main class="w-full max-w-md flex flex-col items-center flex-1">
-        
-        <!-- 📱 High-End Navigation Menu Pills Matrix -->
-        <div class="grid grid-cols-2 gap-2.5 w-full px-2 mb-4 text-center">
+    <!-- Header Section -->
+    <header class="w-full bg-white border-b-4 border-[#FF6B00] p-4 sticky top-0 z-50 shadow-md">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-center md:text-left">
+                <!-- Fixed Logo Typography: Clean, professional pop-out eyes inside the actual name -->
+                <h1 class="text-3xl md:text-4xl font-black tracking-widest text-[#1E1E24]">
+                    THOUGHT L<span class="text-[#FF6B00]">👀</span>M
+                </h1>
+                <p class="text-[10px] uppercase tracking-wider text-gray-500 font-extrabold mt-1">
+                    Weaving Human Insight with Advanced Technology
+                </p>
+            </div>
             
-            <!-- Brain Link Dropdown Menu Trigger -->
-            <div class="relative">
-                <button onclick="toggleMenu('menu-brain')" class="w-full flex items-center justify-between bg-white border border-neutral-300 rounded-full py-2.5 px-4 text-xs font-bold transition-all hover:border-[#FF6F00] cursor-pointer">
-                    <span>🧠 Mind Link</span>
-                    <span class="text-[9px] text-neutral-400">▼</span>
-                </button>
-                <div id="menu-brain" class="hidden absolute left-0 right-0 mt-1.5 bg-white border border-neutral-200 rounded-2xl p-1.5 z-50 shadow-xl text-left">
-                    <button onclick="loadArticle('brain_1')" class="w-full text-left text-xs p-2.5 hover:bg-amber-50 rounded-xl font-medium text-neutral-700">1. The Myth of Scarcity</button>
-                    <button onclick="loadArticle('brain_2')" class="w-full text-left text-xs p-2.5 hover:bg-amber-50 rounded-xl font-medium text-neutral-700">2. Physics of Intuition</button>
-                    <button onclick="loadArticle('brain_3')" class="w-full text-left text-xs p-2.5 hover:bg-amber-50 rounded-xl font-medium text-neutral-700">3. The Avoidance Loop</button>
-                    <button onclick="loadArticle('brain_4')" class="w-full text-left text-xs p-2.5 hover:bg-amber-50 rounded-xl font-medium text-neutral-700">4. Digital Sovereignty</button>
+            <!-- Live Economy Tracker (100 Looms = 1 INR Real Cash) -->
+            <div class="bg-[#1E1E24] text-white p-3 rounded-xl flex items-center gap-4 shadow-inner border border-[#FFA500]">
+                <div class="text-right">
+                    <p class="text-[10px] text-gray-400 font-bold uppercase">Real Value Balance</p>
+                    <p class="text-lg font-black text-[#FFA500]"><span id="loom-balance">500</span> Looms</p>
                 </div>
-            </div>
-
-            <!-- Hunger Fix Dropdown Menu Trigger -->
-            <div class="relative">
-                <button onclick="toggleMenu('menu-solar')" class="w-full flex items-center justify-between bg-[#FF6F00] text-white rounded-full py-2.5 px-4 text-xs font-bold shadow-xs cursor-pointer">
-                    <span>🌾 Hunger Fix</span>
-                    <span class="text-[9px] opacity-80">▼</span>
-                </button>
-                <div id="menu-solar" class="hidden absolute left-0 right-0 mt-1.5 bg-white border border-neutral-200 rounded-2xl p-1.5 z-50 shadow-xl text-left">
-                    <button onclick="loadArticle('solar_default')" class="w-full text-left text-xs p-2.5 hover:bg-amber-50 rounded-xl font-medium text-neutral-700">1. Cold-Chain Manifesto</button>
-                    <button onclick="loadArticle('solar_abundance')" class="w-full text-left text-xs p-2.5 hover:bg-amber-50 rounded-xl font-medium text-neutral-700">2. Locked Abundance</button>
+                <div class="border-l border-gray-600 h-8"></div>
+                <div>
+                    <p class="text-[10px] text-gray-400 font-bold uppercase">Rupee Balance</p>
+                    <p class="text-lg font-black text-emerald-400">₹<span id="inr-balance">5.00</span></p>
                 </div>
-            </div>
-
-            <!-- ⚠️ Emergency Crisis Action Dropdown Menu Trigger -->
-            <div class="relative">
-                <button onclick="toggleMenu('menu-crisis')" class="w-full flex items-center justify-between bg-red-50 border border-red-200 text-red-700 rounded-full py-2.5 px-4 text-xs font-bold transition-all hover:border-red-500 cursor-pointer">
-                    <span>⚠️ Safety Center</span>
-                    <span class="text-[9px] text-red-400">▼</span>
-                </button>
-                <div id="menu-crisis" class="hidden absolute left-0 right-0 mt-1.5 bg-white border border-neutral-200 rounded-2xl p-1.5 z-50 shadow-xl text-left">
-                    <button onclick="loadArticle('crisis_flood')" class="w-full text-left text-xs p-2.5 hover:bg-red-50 text-red-700 rounded-xl font-bold">🌊 Flash Flood Outlets</button>
-                    <button onclick="loadArticle('crisis_quake')" class="w-full text-left text-xs p-2.5 hover:bg-red-50 text-red-700 rounded-xl font-bold">🌋 Earthquake Refuge</button>
-                </div>
-            </div>
-
-            <!-- 🚀 Stand-Alone App-within-App System Interface Activation Button -->
-            <div>
-                <button onclick="launchVahaanChaalakApp()" class="w-full bg-neutral-900 text-white rounded-full py-2.5 px-4 text-xs font-black shadow-xs transition-all hover:bg-black uppercase tracking-wider cursor-pointer">
-                    🚚 Vahaan Guard
-                </button>
-            </div>
-        </div>
-
-        <!-- Secondary Ecosystem Hub Triggers -->
-        <div class="grid grid-cols-2 gap-2.5 w-full px-2 mb-4">
-            <button onclick="launchArcadeHub()" class="bg-teal-50 border border-teal-200 text-teal-800 rounded-full py-2 px-4 font-bold text-xs hover:border-teal-400 transition-all cursor-pointer">
-                🕹️ Arcade Hub
-            </button>
-            <button onclick="loadArticle('connect_base')" class="bg-blue-50 border border-blue-200 text-blue-800 rounded-full py-2 px-4 font-bold text-xs hover:border-blue-400 transition-all cursor-pointer">
-                🔗 Connect Base
-            </button>
-        </div>
-
-        <!-- 🪙 Monetization Balance Dashboard Window Container -->
-        <div class="w-full px-2 mb-6">
-            <div class="bg-white border border-neutral-200 rounded-2xl p-3.5 flex items-center justify-between shadow-xs">
-                <div class="flex items-center gap-2.5">
-                    <span class="text-2xl">🪙</span>
-                    <div>
-                        <p class="text-[9px] font-bold text-neutral-400 uppercase tracking-widest">Real Value Balance</p>
-                        <p class="text-sm font-black text-neutral-800"><span id="coin-count">5</span> Loom Coins</p>
-                    </div>
-                </div>
-                <button onclick="openPaymentTray()" class="bg-emerald-500 text-white font-bold text-xs py-1.5 px-4 rounded-xl hover:bg-emerald-600 shadow-xs cursor-pointer">
+                <button onclick="topUpLooms()" class="bg-[#FF6B00] hover:bg-orange-600 px-3 py-1 text-xs font-black rounded-lg text-white">
                     + Top Up
                 </button>
             </div>
         </div>
 
-        <!-- 📺 Dynamic Active Screen Render Output Container Location -->
-        <section id="app-workspace" class="w-full px-2 min-h-[340px]">
-            <!-- Opening Layout Display View: Solar Grid Manifesto -->
-            <div class="bg-white border border-neutral-200 rounded-2xl p-5 shadow-xs text-center animate-fadeIn">
-                <span class="text-2xl">🌾</span>
-                <h2 class="text-xl font-black text-neutral-900 mt-2 mb-2">The Solar Grid: Cold-Chain Hunger Fix</h2>
-                <p class="text-sm text-neutral-600 leading-relaxed mb-4">
-                    Millions of people go to bed hungry tonight, yet mountains of healthy grain rot away inside locked storage buildings. This shows us that hunger is a delivery and storage roadblock, not a shortage of global crops!
-                </p>
-                <p class="text-xs font-bold text-neutral-900 bg-[#FFF9C4] p-2.5 rounded-xl border border-neutral-200 mb-4">
-                    We don't need complex macroeconomic theories; we need cold, automated solar storage nodes.
-                </p>
-                <div class="border-t border-neutral-100 pt-4">
-                    <p class="text-[10px] font-black text-neutral-400 mb-2 uppercase tracking-wider">👉 Tap below to record your voice & earn reward parameters:</p>
-                    <button onclick="triggerArticleInteraction('Solar Manifesto')" class="w-full bg-[#FF6F00] text-white font-bold text-xs py-2.5 rounded-xl hover:bg-[#e66400] transition-all cursor-pointer">
-                        I Support Solar Food Nodes
-                    </button>
+        <!-- Touch-Optimized Dynamic Navigation Bar -->
+        <nav class="max-w-6xl mx-auto mt-4 border-t border-gray-200 pt-3 flex flex-wrap justify-center gap-2">
+            
+            <!-- Articles Tab Container -->
+            <div class="relative">
+                <button onclick="toggleDropdown(event, 'articles-dropdown')" class="nav-btn bg-[#FF6B00] text-white font-bold px-4 py-2 rounded-lg flex items-center gap-1 shadow">
+                    📰 Articles <span class="text-xs">▼</span>
+                </button>
+                <div id="articles-dropdown" class="dropdown-menu absolute left-0 mt-2 w-72 bg-white border-2 border-[#FF6B00] rounded-xl shadow-xl z-50">
+                    <a href="#" onclick="loadArticle('science')" class="block px-4 py-2.5 hover:bg-[#FFFDF6] border-b text-sm font-bold text-gray-700">🧬 Sin-In Science (Kid Friendly)</a>
+                    <a href="#" onclick="loadArticle('pollution')" class="block px-4 py-2.5 hover:bg-[#FFFDF6] border-b text-sm font-bold text-gray-700">🌍 How to Reduce Pollution</a>
+                    <a href="#" onclick="loadArticle('wastage')" class="block px-4 py-2.5 hover:bg-[#FFFDF6] border-b text-sm font-bold text-gray-700">🌾 Preventing Food Wastage</a>
+                    <a href="#" onclick="loadArticle('driving-economy')" class="block px-4 py-2.5 hover:bg-[#FFFDF6] border-b text-sm font-bold text-gray-700">📊 How AI Drives the Economy</a>
+                    <a href="#" onclick="loadArticle('india-leader')" class="block px-4 py-2.5 hover:bg-[#FFFDF6] text-sm font-bold text-gray-700">🇮🇳 India as a Global Economic Hub</a>
+                </div>
+            </div>
+
+            <!-- VahaanRakshak Tab Container -->
+            <div class="relative">
+                <button onclick="toggleDropdown(event, 'vahaan-dropdown')" class="nav-btn bg-white border-2 border-[#1E1E24] font-bold px-4 py-2 rounded-lg flex items-center gap-1 shadow">
+                    🛡️ VahaanRakshak <span class="text-xs">▼</span>
+                </button>
+                <div id="vahaan-dropdown" class="dropdown-menu absolute left-0 mt-2 w-72 bg-white border-2 border-[#1E1E24] rounded-xl shadow-xl z-50">
+                    <a href="#" onclick="switchTab('vahaan'); loadVahaanFeature('sos');" class="block px-4 py-2.5 hover:bg-red-50 text-red-600 border-b text-sm font-bold">🚨 Smart SOS (Intentional Touch)</a>
+                    <a href="#" onclick="switchTab('vahaan'); loadVahaanFeature('parking');" class="block px-4 py-2.5 hover:bg-[#FFFDF6] border-b text-sm font-bold text-gray-700">🅿️ Car Parking Monitor</a>
+                    <a href="#" onclick="switchTab('vahaan'); loadVahaanFeature('map');" class="block px-4 py-2.5 hover:bg-[#FFFDF6] border-b text-sm font-bold text-gray-700">🗺️ Traffic Shortest Path Map</a>
+                    <a href="#" onclick="switchTab('vahaan'); loadVahaanFeature('wash');" class="block px-4 py-2.5 hover:bg-[#FFFDF6] text-sm font-bold text-gray-700">🧼 Eco Car Wash Engine</a>
+                </div>
+            </div>
+
+            <!-- Standalone Tabs -->
+            <button onclick="switchTab('shorts')" class="nav-btn bg-white border-2 border-[#1E1E24] font-bold px-4 py-2 rounded-lg shadow">📱 YouTube Shorts</button>
+            <button onclick="switchTab('games')" class="nav-btn bg-white border-2 border-[#1E1E24] font-bold px-4 py-2 rounded-lg shadow">🎮 Mini Games</button>
+            <button onclick="switchTab('ebooks')" class="nav-btn bg-white border-2 border-[#1E1E24] font-bold px-4 py-2 rounded-lg shadow">📚 E-Books</button>
+            <button onclick="switchTab('checkout')" class="nav-btn bg-white border-2 border-[#1E1E24] font-bold px-4 py-2 rounded-lg shadow">💳 Payment Gateway</button>
+            <button onclick="switchTab('connect')" class="nav-btn bg-white border-2 border-[#1E1E24] font-bold px-4 py-2 rounded-lg shadow">🔗 Connect Base</button>
+        </nav>
+    </header>
+
+    <!-- Main View Sandbox Content Area -->
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 md:p-6">
+        
+        <!-- ARTICLE RENDERING VIEWPORT CONTAINER -->
+        <section id="articles" class="tab-content active space-y-6">
+            <div class="bg-white p-6 rounded-2xl border-2 border-[#FFA500] shadow-md">
+                <span class="bg-[#FF6B00] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full">Authentic Editorial</span>
+                <h2 id="article-title" class="text-2xl md:text-3xl font-black mt-3 text-[#1E1E24]">The Solar Grid: Cold-Chain Hunger Fix</h2>
+                <div class="border-b border-dashed border-gray-200 my-4"></div>
+                <div id="article-body" class="text-gray-700 leading-relaxed space-y-4 font-medium">
+                    <p class="text-lg font-bold text-gray-900">Millions of people go to bed hungry tonight, yet mountains of healthy grain rot away inside locked storage buildings. This shows us that hunger is a delivery and storage roadblock, not a shortage of global crops!</p>
+                    <p>We don't need complex macroeconomic theories; we need cold, automated solar storage nodes. When structural pipelines are built to reward community validation directly, real systemic waste drops to absolute zero.</p>
+                </div>
+                <div class="mt-6 bg-[#FFFDF6] p-4 rounded-xl border border-[#FFA500] flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <p class="text-xs font-bold text-neutral-600">💡 Read this piece to generate computational Proof of Insight parameters:</p>
+                    <button onclick="claimReadingReward(50)" class="bg-[#1E1E24] text-white font-bold text-xs px-4 py-2 rounded-lg whitespace-nowrap">Claim 50 Looms (₹0.50)</button>
                 </div>
             </div>
         </section>
-    </main>
 
-    <!-- 💳 Premium Native Checkout Drawer Display Panel Component -->
-    <div id="payment-overlay" class="hidden fixed inset-0 bg-neutral-900/40 premium-blur flex items-end justify-center z-50">
-        <div class="bg-white rounded-t-3xl p-6 w-full max-w-md shadow-2xl animate-slide-up">
-            <div class="w-12 h-1 bg-neutral-300 rounded-full mx-auto mb-4"></div>
-            <h3 class="text-lg font-black text-neutral-900 text-center mb-1">Secure Capital Checkout</h3>
-            <p class="text-xs text-neutral-500 text-center mb-6">Convert digital currency instantly into real-value sovereign infrastructure tokens.</p>
-            
-            <div class="space-y-3.5">
-                <button onclick="processMockTransaction('Google Pay')" class="w-full bg-black text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 cursor-pointer">
+        <!-- VAHANRAKSHAK AUTOMATED TELEMETRY VIEWPORT -->
+        <section id="vahaan" class="tab-content space-y-6">
+            <div class="bg-white p-6 rounded-2xl border-2 border-[#1E1E24] shadow-md">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-2xl">🛡</span>
+                    <h2 class="text-2xl font-black text-[#1E1E24]" id="vahaan-title">VahaanRakshak Dashboard</h2>
+                </div>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-wider" id="vahaan-subtitle">Select an operational feature layer from the dropdown navigation menu above to test sub-modules.</p>
+                
+                <div id="vahaan-dynamic-content" class="bg-gray-50 border border-gray-200 rounded-xl p-6 min-h-[200px] flex flex-col justify-center items-center text-center">
+                    <p class="text-gray-400 font-medium">Tap the "VahaanRakshak ▼" link in the header menu to load responsive application utilities instantly.</p>
+                </div>
+            </div>
+        </section>
 
-
-                    
+        <!-- MEDIA / YOUTUBE SHORTS GRID CONTAINER -->
+        <section id="shorts" class="tab-content space-y-6">
+            <div class="bg-white p-6 rounded-2xl border-2 border-[#FFA500] shadow-md text-center">
+                <h2 class="text-2xl font-black text-[#1E1E24] mb-1">📱 YouTube Shorts Hub</h2>
